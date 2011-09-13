@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>Burke Libbey</title>
+  <link href="http://burke.github.com/atom.xml" rel="self"/>
+  <link href="http://burke.github.com/"/>
+  <updated>2011-09-13T17:04:03-05:00</updated>
+  <id>http://burke.github.com/</id>
+  <author>
+    <name>Burke Libbey</name>
+    
+  </author>
+
+  
+  <entry>
+    <title>Something Something Ruby Something</title>
+    <link href="http://burke.github.com/blog/2011/09/13/something-something-ruby-something/"/>
+    <updated>2011-09-13T16:56:00-05:00</updated>
+    <id>http://burke.github.com/blog/2011/09/13/something-something-ruby-something</id>
+    <content type="html">&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac euismod nunc. Etiam faucibus odio nec tellus tincidunt eu laoreet ipsum ultrices. Aenean at dui nunc, eget tincidunt erat. Sed at mi eu neque hendrerit aliquam faucibus pretium urna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque nisi elit, vestibulum ornare venenatis ac, commodo vitae lorem. Sed sit amet suscipit lacus. Praesent dapibus elit quis velit auctor vitae faucibus urna suscipit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut a commodo felis. Suspendisse orci elit, luctus non commodo sit amet, feugiat sed risus. Nam et turpis quam, ut lobortis nunc. Sed ante ligula, porttitor vitae aliquet ac, sagittis sed risus. Ut pretium interdum risus a tempus. Vivamus aliquam ornare aliquam.&lt;/p&gt;
+
+&lt;figure role=code&gt; &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;11&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;ActiveRecord::ConnectionAdapters&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PostgreSQLAdapter&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;n&quot;&gt;alias_method&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:__connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:connect&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;connect&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;      &lt;span class=&quot;n&quot;&gt;__connect&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;      &lt;span class=&quot;vi&quot;&gt;@connection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_notice_receiver&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Curabitur egestas justo eu nisl aliquam quis egestas metus bibendum. Morbi nibh massa, feugiat vitae vulputate at, imperdiet et arcu. Aliquam massa nunc, pharetra ut feugiat et, hendrerit sit amet ipsum. Sed nisl lectus, semper posuere auctor a, interdum ac ante. Sed ultricies nulla sed ipsum tempus a ullamcorper enim tempus. Aenean sed sem eget diam lacinia porttitor et vitae nunc. Sed blandit suscipit magna eu cursus. Mauris ac felis libero. Vivamus nec lorem mauris.&lt;/p&gt;
+
+&lt;p&gt;Maecenas ac porttitor lorem. In at erat cursus leo bibendum viverra vel et augue. Nulla sed turpis ut nunc euismod varius et in augue. Ut luctus justo sapien, id condimentum dolor. Nullam suscipit leo sit amet ante feugiat commodo ac eu lectus. Mauris fermentum, nisi fermentum aliquet suscipit, sem ante blandit dolor, sed eleifend dui risus ut turpis. Pellentesque fringilla felis ligula. Quisque at nunc ante. Integer dolor nisi, consectetur ut mattis in, egestas quis massa. Sed fermentum vestibulum sem quis hendrerit.&lt;/p&gt;
+</content>
+  </entry>
+  
+</feed>
