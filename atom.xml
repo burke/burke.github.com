@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>My Octopress Blog</title>
+  <link href="http://yoursite.com/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2011-09-13T16:48:30-05:00</updated>
+  <id>http://yoursite.com/</id>
+  <author>
+    <name>Your Name</name>
+    
+  </author>
+
+  
+  <entry>
+    <title>Hello</title>
+    <link href="http://yoursite.com/blog/2011/09/13/hello/"/>
+    <updated>2011-09-13T16:44:00-05:00</updated>
+    <id>http://yoursite.com/blog/2011/09/13/hello</id>
+    <content type="html">&lt;p&gt;Blog.&lt;/p&gt;
+</content>
+  </entry>
+  
+</feed>
