@@ -64,7 +64,7 @@
     
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/09/13/something-something-ruby-something/">Something Something Ruby Something</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/09/13/making-postgresql-in-rails-less-noisy/">Making PostgreSQL in Rails Less Noisy</a></h1>
     
     
       <p class="meta">
@@ -77,14 +77,15 @@
 
 
 
-<time datetime="2011-09-13T16:56:00-05:00" pubdate  data-updated="true" >Sep 13<span>th</span>, 2011</time></p>
+<time datetime="2011-09-13T17:43:00-05:00" pubdate  data-updated="true" >Sep 13<span>th</span>, 2011</time></p>
     
   </header>
 
 
-  <div class="entry-content"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac euismod nunc. Etiam faucibus odio nec tellus tincidunt eu laoreet ipsum ultrices. Aenean at dui nunc, eget tincidunt erat. Sed at mi eu neque hendrerit aliquam faucibus pretium urna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque nisi elit, vestibulum ornare venenatis ac, commodo vitae lorem. Sed sit amet suscipit lacus. Praesent dapibus elit quis velit auctor vitae faucibus urna suscipit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut a commodo felis. Suspendisse orci elit, luctus non commodo sit amet, feugiat sed risus. Nam et turpis quam, ut lobortis nunc. Sed ante ligula, porttitor vitae aliquet ac, sagittis sed risus. Ut pretium interdum risus a tempus. Vivamus aliquam ornare aliquam.</p>
+  <div class="entry-content"><p>There are often a lot of benefits to replacing MySQL with PostgreSQL in a Rails application, but there is one significant downside: Postgres has never really been a first class citizen in the Rails database world, and the integration isn&#8217;t quite as bulletproof as MySQL&#8217;s. In porting our applications over to Postgres the past few months, we&#8217;ve run into some minor annoyances. The worst of these was the <code>pg</code> gem&#8217;s curious handling (or lack thereof) of Postgres&#8217;s very verbose notice messages. These were severely polluting our logs and, more importantly, our spec output. There are a couple gems out there that purport to fix it, none of which we had any luck with. I ended up diving into the driver&#8217;s source and came up with this:</p>
 
-<figure role=code> <div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+<figure role=code><figcaption><span>config/initializers/silence_postgres_notices.rb </span></figcaption>
+ <div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
 <span class='line'>2</span>
 <span class='line'>3</span>
 <span class='line'>4</span>
@@ -93,10 +94,7 @@
 <span class='line'>7</span>
 <span class='line'>8</span>
 <span class='line'>9</span>
-<span class='line'>10</span>
-<span class='line'>11</span>
 </pre></td><td class='code' width='100%'><pre><code class='ruby'><div class='line'><span class="k">module</span> <span class="nn">ActiveRecord::ConnectionAdapters</span>
-</div><div class='line'>
 </div><div class='line'>  <span class="k">class</span> <span class="nc">PostgreSQLAdapter</span>
 </div><div class='line'>    <span class="n">alias_method</span> <span class="ss">:__connect</span><span class="p">,</span> <span class="ss">:connect</span>
 </div><div class='line'>    <span class="k">def</span> <span class="nf">connect</span>
@@ -104,14 +102,11 @@
 </div><div class='line'>      <span class="vi">@connection</span><span class="o">.</span><span class="n">set_notice_receiver</span> <span class="p">{</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span> <span class="kp">nil</span> <span class="p">}</span>
 </div><div class='line'>    <span class="k">end</span>
 </div><div class='line'>  <span class="k">end</span>
-</div><div class='line'>
 </div><div class='line'><span class="k">end</span>
 </div></code></pre></td></tr></table></div></figure>
 
 
-<p>Curabitur egestas justo eu nisl aliquam quis egestas metus bibendum. Morbi nibh massa, feugiat vitae vulputate at, imperdiet et arcu. Aliquam massa nunc, pharetra ut feugiat et, hendrerit sit amet ipsum. Sed nisl lectus, semper posuere auctor a, interdum ac ante. Sed ultricies nulla sed ipsum tempus a ullamcorper enim tempus. Aenean sed sem eget diam lacinia porttitor et vitae nunc. Sed blandit suscipit magna eu cursus. Mauris ac felis libero. Vivamus nec lorem mauris.</p>
-
-<p>Maecenas ac porttitor lorem. In at erat cursus leo bibendum viverra vel et augue. Nulla sed turpis ut nunc euismod varius et in augue. Ut luctus justo sapien, id condimentum dolor. Nullam suscipit leo sit amet ante feugiat commodo ac eu lectus. Mauris fermentum, nisi fermentum aliquet suscipit, sem ante blandit dolor, sed eleifend dui risus ut turpis. Pellentesque fringilla felis ligula. Quisque at nunc ante. Integer dolor nisi, consectetur ut mattis in, egestas quis massa. Sed fermentum vestibulum sem quis hendrerit.</p>
+<p>Stick this anywhere in <code>config/initializers</code>, and your postgres experience should get a whole lot quieter.</p>
 </div>
   
   
@@ -135,7 +130,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/09/13/something-something-ruby-something/">Something Something Ruby Something</a>
+        <a href="/blog/2011/09/13/making-postgresql-in-rails-less-noisy/">Making PostgreSQL in Rails Less Noisy</a>
       </li>
     
   </ul>
