@@ -4,13 +4,112 @@
   <title>Burke Libbey</title>
   <link href="http://burke.github.com/atom.xml" rel="self"/>
   <link href="http://burke.github.com/"/>
-  <updated>2011-09-13T17:55:06-05:00</updated>
+  <updated>2011-10-08T15:25:31-05:00</updated>
   <id>http://burke.github.com/</id>
   <author>
     <name>Burke Libbey</name>
     
   </author>
 
+  
+  <entry>
+    <title>Solving the Short vs. Long Command Prompt Tradeoff: Wünderprompt</title>
+    <link href="http://burke.github.com/blog/2011/10/08/solving-the-short-vs-long-command-prompt-tradeoff-wunderprompt/"/>
+    <updated>2011-10-08T14:35:00-05:00</updated>
+    <id>http://burke.github.com/blog/2011/10/08/solving-the-short-vs-long-command-prompt-tradeoff-wunderprompt</id>
+    <content type="html">&lt;p&gt;For years, I was a believer in the short command prompt. Give me a
+prompt character and maybe my current working directory, and I&amp;#8217;m happy.
+None of this extra nonsense that just makes the prompt slow and junks up
+the display with stuff I have to ignore. If my commands wrap to the next
+line, there&amp;#8217;s something wrong.&lt;/p&gt;
+
+&lt;p&gt;&amp;#8230;Then I saw someone using a git-aware prompt, and my worldview
+inverted. I added a few bits of git information to my prompt, and I was
+hooked. I slowly started adding more and more context to my prompt. What
+surprised me most was how, after a marker had been in my prompt for a
+couple of weeks, I was suddenly constantly aware of its state without
+even consciously looking at it. Just having the extra information
+somewhere on screen added it to my mental model of the system.&lt;/p&gt;
+
+&lt;p&gt;&amp;#8230;and so I started slowly collecting additional items in my prompt.
+It got to the point where I was blown away by how intuitively I
+understood exactly what state git was in at any given moment, but
+two things started happening. My prompt got big, and my prompt got slow.&lt;/p&gt;
+
+&lt;p&gt;I could probably deal with a prompt that reaches halfway across the
+screen, but when it takes 800ms to generate, it becomes a &lt;em&gt;huge&lt;/em&gt;
+workflow impediment. I had a predicament. Do I suck it up and deal with
+a slow, long prompt, or remove some items? It turned out I could
+actually get the best of both worlds, which is what led me down the path
+to Wünderprompt.&lt;/p&gt;
+
+&lt;p&gt;I spent some time looking at why the zsh git prompt libraries I had
+written or borrowed were so slow. It turned out that most of the problem
+was that I was shelling out to git over half a dozen time for &lt;em&gt;each&lt;/em&gt;
+propt generation. That&amp;#8217;s a lot. So I set out to fix it.&lt;/p&gt;
+
+&lt;p&gt;I started writing a little utility that intuits as much as it can by
+inspecting the .git directory itself. Where my previous prompt would
+parse &lt;code&gt;git stash list&lt;/code&gt; to determine whether there&amp;#8217;s a stash, it now
+simply checks for the presence of &lt;code&gt;.git/refs/stash&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;As I was developing this new script, I remembered that once I was used
+to the layout of a prompt, all the information was absorbed
+subconsciously, so I laid it out as colourfully and efficiently (and
+some might argue, cryptically) as possible. Without further ado:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://burke.github.com/images/2011-10-prompt-1.png&quot;/&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;RPROMPT&lt;/code&gt; is pretty uninteresting, so I&amp;#8217;ll skip over that. It&amp;#8217;s
+mostly additional information I might care about, skimming back through
+my history to find something.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;PROMPT&lt;/code&gt;, ie. the left side, is composed of six blocks, which I&amp;#8217;ll
+go through one by one.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;CWD: This is pretty simple. The last component of the path, colour
+coded by host. My laptop is cyan, one of my servers is red, another
+is yellow, and so on.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;RVM/Ruby info: This is a bit dense. When I typed &lt;code&gt;turbo&lt;/code&gt;, a red &lt;code&gt;X&lt;/code&gt;
+was prefixed to this section. That indicates tuned GC settings,
+supported by REE and 1.9.3. These are implemented as environment
+variables, so I have them handled as a shell state. After the &lt;code&gt;X&lt;/code&gt; is
+the name of my current gemset, colour-coded by the current ruby
+implementation. Purple is REE, white is 1.9.3, yellow is 1.9.2, and
+so on. If I&amp;#8217;m using the default gemset, it shows an &lt;code&gt;@&lt;/code&gt; instead.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Git commit harassment section: I added this after watching a
+screencast by Gary Bernhardt. It shows the time elapsed since the
+last commit in the current git project. 1-10 minutes is green, 10-30
+minutes is orange, and above that is red.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Git branch: Shows the current branch, replacing &lt;code&gt;master&lt;/code&gt; with &lt;code&gt;*&lt;/code&gt;. If
+the branch is clean, it&amp;#8217;s in green, and if it&amp;#8217;s dirty (ie. files have
+been changed since commit), it&amp;#8217;s purple.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Git status: This is essentially the M/D/A/? part of &lt;code&gt;git status&lt;/code&gt;.
+If a symbol appears in the right column (ie. the working directory),
+it is shown in blue. If it appears in the left column (ie. the
+index), it is shown in black. If it appears in both, it is shown in
+red. You can see I modified a file, and a blue &lt;code&gt;M&lt;/code&gt; appeared in the
+prompt. Later, in the blog directory, there is an added file (shown
+as &lt;code&gt;??&lt;/code&gt; by &lt;code&gt;git status&lt;/code&gt;, so it is represented by a red &lt;code&gt;?&lt;/code&gt;. This
+section really takes some time to develop a feel for, but it&amp;#8217;s very
+handy to have the mental model without running &lt;code&gt;git status&lt;/code&gt; all the
+time.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Prompt char and return status: Nothing too fancy here. &lt;code&gt;%&lt;/code&gt; or &lt;code&gt;#&lt;/code&gt; is
+shown, depending on whether I&amp;#8217;m a user or root. It&amp;#8217;s green if the
+last command succeeded, and if it failed, it&amp;#8217;s red with the return
+value prefixed.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;And that&amp;#8217;s my short long prompt. The best part? It generates in under
+20ms. It&amp;#8217;s working wonderfully for me. The meat-and-potatoes bit is
+available on &lt;a href=&quot;https://github.com/burke/wunderprompt&quot;&gt;Github&lt;/a&gt;, and there are some
+more random glue-y bits in my &lt;a href=&quot;https://github.com/burke/dotfiles/blob/master/.config.d/zsh/prompts.zsh&quot;&gt;zsh configuration&lt;/a&gt;.
+If you have any comments or suggestions, other than &amp;#8220;refactor your
+horrible C code&amp;#8221;, I&amp;#8217;d love to hear them.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Making PostgreSQL in Rails Less Noisy</title>

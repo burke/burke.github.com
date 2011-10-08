@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Burke Libbey</title>
+  <title>Solving the Short vs. Long Command Prompt Tradeoff: Wünderprompt - Burke Libbey</title>
   <meta name="author" content="Burke Libbey">
   
 
@@ -16,7 +16,7 @@
 
   
 
-  <link rel="canonical" href="http://burke.github.com/index.html"/>
+  <link rel="canonical" href="http://burke.github.com/blog/2011/10/08/solving-the-short-vs-long-command-prompt-tradeoff-wunderprompt/"/>
   <link href="/favicon.png" rel="shortcut icon" />
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -56,15 +56,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
-
-
-
-  <article>
-    
+      <div>
+<article class="hentry">
+  
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/10/08/solving-the-short-vs-long-command-prompt-tradeoff-wunderprompt/">Solving the Short vs. Long Command Prompt Tradeoff: Wünderprompt</a></h1>
+      <h1 class="entry-title">Solving the Short vs. Long Command Prompt Tradeoff: Wünderprompt</h1>
     
     
       <p class="meta">
@@ -82,7 +79,7 @@
   </header>
 
 
-  <div class="entry-content"><p>For years, I was a believer in the short command prompt. Give me a
+<div class="entry-content"><p>For years, I was a believer in the short command prompt. Give me a
 prompt character and maybe my current working directory, and I&#8217;m happy.
 None of this extra nonsense that just makes the prompt slow and junks up
 the display with stuff I have to ignore. If my commands wrap to the next
@@ -174,21 +171,16 @@ more random glue-y bits in my <a href="https://github.com/burke/dotfiles/blob/ma
 If you have any comments or suggestions, other than &#8220;refactor your
 horrible C code&#8221;, I&#8217;d love to hear them.</p>
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-  
 
+<span class="byline author vcard">Posted by <span class="fn">Burke Libbey</span></span>
 
-  </article>
-
-
-  <article>
-    
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/09/13/making-postgresql-in-rails-less-noisy/">Making PostgreSQL in Rails Less Noisy</a></h1>
-    
-    
-      <p class="meta">
+      
 
 
 
@@ -198,52 +190,27 @@ horrible C code&#8221;, I&#8217;d love to hear them.</p>
 
 
 
-<time datetime="2011-09-13T17:43:00-05:00" pubdate  data-updated="true" >Sep 13<span>th</span>, 2011</time></p>
+<time datetime="2011-10-08T14:35:00-05:00" pubdate  data-updated="true" >Oct 8<span>th</span>, 2011</time>
+      
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>There are often a lot of benefits to replacing MySQL with PostgreSQL in a Rails application, but there is one significant downside: Postgres has never really been a first class citizen in the Rails database world, and the integration isn&#8217;t quite as bulletproof as MySQL&#8217;s. In porting our applications over to Postgres the past few months, we&#8217;ve run into some minor annoyances. The worst of these was the <code>pg</code> gem&#8217;s curious handling (or lack thereof) of Postgres&#8217;s very verbose notice messages. These were severely polluting our logs and, more importantly, our spec output. There are a couple gems out there that purport to fix it, none of which we had any luck with. I ended up diving into the driver&#8217;s source and came up with this:</p>
-
-<figure role=code><figcaption><span>config/initializers/silence_postgres_notices.rb </span></figcaption>
- <div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
-<span class='line'>2</span>
-<span class='line'>3</span>
-<span class='line'>4</span>
-<span class='line'>5</span>
-<span class='line'>6</span>
-<span class='line'>7</span>
-<span class='line'>8</span>
-<span class='line'>9</span>
-</pre></td><td class='code' width='100%'><pre><code class='ruby'><div class='line'><span class="k">module</span> <span class="nn">ActiveRecord::ConnectionAdapters</span>
-</div><div class='line'>  <span class="k">class</span> <span class="nc">PostgreSQLAdapter</span>
-</div><div class='line'>    <span class="n">alias_method</span> <span class="ss">:__connect</span><span class="p">,</span> <span class="ss">:connect</span>
-</div><div class='line'>    <span class="k">def</span> <span class="nf">connect</span>
-</div><div class='line'>      <span class="n">__connect</span>
-</div><div class='line'>      <span class="vi">@connection</span><span class="o">.</span><span class="n">set_notice_receiver</span> <span class="p">{</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span> <span class="kp">nil</span> <span class="p">}</span>
-</div><div class='line'>    <span class="k">end</span>
-</div><div class='line'>  <span class="k">end</span>
-</div><div class='line'><span class="k">end</span>
-</div></code></pre></td></tr></table></div></figure>
-
-
-<p>Stick this anywhere in <code>config/initializers</code>, and your postgres experience should get a whole lot quieter.</p>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://burke.github.com/blog/2011/10/08/solving-the-short-vs-long-command-prompt-tradeoff-wunderprompt/" data-via="burkelibbey" data-counturl="http://burke.github.com/blog/2011/10/08/solving-the-short-vs-long-command-prompt-tradeoff-wunderprompt/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
 </div>
-  
-  
 
-
-  </article>
-
-<nav role="pagination">
-  <div>
     
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</nav>
+  </footer>
+</article>
 
 </div>
+
 <aside role=sidebar>
   
     <section>
@@ -264,7 +231,7 @@ horrible C code&#8221;, I&#8217;d love to hear them.</p>
 <section>
   <h1>Github Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/burke">@burke</a> on Github
@@ -294,7 +261,7 @@ horrible C code&#8221;, I&#8217;d love to hear them.</p>
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -312,6 +279,7 @@ horrible C code&#8221;, I&#8217;d love to hear them.</p>
 
   
 </aside>
+
 
     </div>
   </div>
