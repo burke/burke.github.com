@@ -3,7 +3,7 @@ layout: post
 title: "Solving the Short vs. Long Command Prompt Tradeoff: Wünderprompt"
 date: 2011-10-08 14:35
 comments: true
-categories:
+categories: zsh, "workflow optimization"
 ---
 For years, I was a believer in the short command prompt. Give me a
 prompt character and maybe my current working directory, and I'm happy.
@@ -22,7 +22,7 @@ somewhere on screen added it to my mental model of the system.
 ...and so I started slowly collecting additional items in my prompt.
 It got to the point where I was blown away by how intuitively I
 understood exactly what state git was in at any given moment, but
-two things started happening. My prompt got big, and my prompt got slow.
+two things started happening: my prompt got big; and my prompt got slow.
 
 I could probably deal with a prompt that reaches halfway across the
 screen, but when it takes 800ms to generate, it becomes a *huge*
